@@ -6,7 +6,7 @@ from django.db.models import BigAutoField
 
 
 
-class bike(models.Model):
+class Bike(models.Model):
     state_choice = (
     ('AP','Andhra Pradesh'),
     ('AR','Arunachal Pradesh'),

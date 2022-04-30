@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import bike
+from .models import Bike
 
 # Register your models here.
 class BikeEdit(admin.ModelAdmin):
@@ -13,4 +13,4 @@ class BikeEdit(admin.ModelAdmin):
     list_editable = ('is_featured',)
     search_fields = ('id','bike_title','city','year','is_featured')
     list_filter = ('bike_title','city','year','is_featured')
-admin.site.register(bike, BikeEdit)
+admin.site.register(Bike, BikeEdit)

@@ -35,57 +35,45 @@
         </div>
         <!-- Search box 3 start -->
         <div class="search-box-4 sb-8">
-            <form action="#" method="">
+            <form action="{% url 'search' %}">
                 <div class="form-group">
                     <input type="text" name="keyword" placeholder="Search by name" class="form-control">
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-brand">
-                        <option selected="true" disabled="disabled">Brand</option>
-                        <option>Audi</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Nissan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control search-fields" name="select-make">
+                    <select class="form-control search-fields" name="model">
                         <option selected="true" disabled="disabled">Model</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Lamborghini Huracán</option>
-                        <option>Sports Bike</option>
+                        {% for model in model_search %}
+                        <option value="{{model}}">{{model}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-location">
+                    <select class="form-control search-fields" name="city">
                         <option selected="true" disabled="disabled">Location</option>
-                        <option>United States</option>
-                        <option>United Kingdom</option>
+                        {% for city in location_search %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-year">
+                    <select class="form-control search-fields" name="year">
                         <option selected="true" disabled="disabled">Year</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
+                        {% for year in year_search %}
+                        <option value="{{year}}">{{year}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control search-fields" name="select-type">
-                        <option selected="true" disabled="disabled">Select Type Of Bike</option>
-                        <option>Sedan</option>
-                        <option>Sports</option>
-                        <option>Hatchback</option>
-                        <option>Pickup Truck</option>
-                        <option>SUV</option>
+                    <select class="form-control search-fields" name="color">
+                        <option selected="true" disabled="disabled">Colour</option>
+                        {% for color in color_search %}
+                        <option value="{{color}}">{{color}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="range-slider clearfix">
                                 <label>Price</label>
-                                <div data-min="0" data-max="150000"  data-min-name="min_price" data-max-name="max_price" data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div data-min="0" data-max="2000000"  data-min-name="min_price" data-max-name="max_price" data-unit="INR" class="range-slider-ui ui-slider" aria-disabled="false"></div>
                                 <div class="clearfix"></div>
                             </div>
                 <div class="form-group">
@@ -117,7 +105,7 @@
     <div class="container">
         <!-- Main title -->
         <div class="main-title">
-            <h1>Featured <span>Cars</span></h1>
+            <h1>Featured <span>Bikes</span></h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <!-- Slick slider area start -->
@@ -127,7 +115,7 @@
                 <div class="slick-slide-item">
                     <div class="car-box-3">
                         <div class="car-thumbnail">
-                            <a href="car-details.html" class="car-img">
+                            <a href="{% url 'bike_details' feature.id %}" class="car-img">
                                 <div class="tag-2">Featured</div>
                                 <div class="price-box">
                                     <span>₹{{feature.price | intcomma}}</span>
@@ -158,10 +146,10 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="car-details.html">{{feature.bike_title}}</a>
+                                <a href="{% url 'bike_details' feature.id %}">{{feature.bike_title}}</a>
                             </h1>
                             <div class="location">
-                                <a href="car-details.html">
+                                <a href="{% url 'bike_details' feature.id %}">
                                     <i class="flaticon-pin"></i>{{feature.state}}, {{feature.city}}
                                 </a>
                             </div>
@@ -169,7 +157,7 @@
                                 <li>{{feature.color}}</li>
                                 <li>{{feature.miles | intcomma}} km</li>
                                 <li>Owner: {{feature.no_of_owner}}</li>
-                                <li>Milage: {{feature.milage}}</li>
+                                <li>Milage: {{feature.milage}} km/l</li>
                                 <li>{{feature.year}}</li>
                             </ul>
                         </div>
@@ -195,7 +183,7 @@
     <div class="container">
         <!-- Main title -->
         <div class="main-title">
-            <h1>Latest <span>Cars</span></h1>
+            <h1>Latest <span>Bikes</span></h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <div class="row">
@@ -203,7 +191,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="car-box">
                     <div class="car-thumbnail">
-                        <a href="car-details.html" class="car-img">
+                        <a href="{% url 'bike_details' ab.id %}" class="car-img">
                             <div class="tag">For Sale</div>
                             <img class="d-block w-100" src="{{ab.bike_photo.url}}" alt="car" style="min-height:262px; max-height:262px">
                             <div class="facilities-list clearfix">
@@ -244,10 +232,10 @@
                     </div>
                     <div class="detail">
                         <h1 class="title">
-                            <a href="car-details.html">{{ab.bike_title}}</a>
+                            <a href="{% url 'bike_details' ab.id %}">{{ab.bike_title}}</a>
                         </h1>
                         <div class="location">
-                            <a href="car-details.html">
+                            <a href="{% url 'bike_details' ab.id %}">
                                 <i class="flaticon-pin"></i>{{ab.state}}, {{ab.city}}
                             </a>
                         </div>
@@ -294,7 +282,7 @@
                             </div>
                         </div>
                         <div class="details">
-                            <h4><a href="team-detail.html">{{team.first_name}} {{team.last_name}}</a></h4>
+                            <h4><a href="#">{{team.first_name}} {{team.last_name}}</a></h4>
                             <h5>{{team.designation}}</h5>
                         </div>
                     </div>

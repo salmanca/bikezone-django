@@ -6,7 +6,7 @@
         <div class="breadcrumb-areas">
             <h1>Contact Us</h1>
             <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <li class="active">Contact Us</li>
             </ul>
         </div>
@@ -157,11 +157,11 @@
                 infoWindow.setContent("" +
                     "<div class='map-properties contact-map-content'>" +
                     "<div class='map-content'>" +
-                    "<p class='address'>20-21 Kathal St. Tampa City, FL</p>" +
+                    "<p class='address'>20 Fort St. Enakulam City, KL</p>" +
                     "<ul class='map-properties-list'> " +
-                    "<li><i class='flaticon-phone'></i>  +0477 8556 552</li> " +
-                    "<li><i class='flaticon-phone'></i>  info@themevessel.com</li> " +
-                    "<li><a href='index.html'><i class='fa fa-globe'></i>  http://www.example.com</li></a> " +
+                    "<li><i class='flaticon-phone'></i>  +91 8606725876</li> " +
+                    "<li><i class='flaticon-phone'></i>  Bikezone@gmail.com</li> " +
+                    "<li><a href='{% url 'home' %}'><i class='fa fa-globe'></i>  http://www.example.com</li></a> " +
                     "</ul>" +
                     "</div>" +
                     "</div>");
