@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6eu0=2ph3e#+1ev=e2t_c%hv0-+6c^r+i*=^-@zqx*0=n=$m1b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'bikezone.urls'
@@ -90,15 +92,20 @@ WSGI_APPLICATION = 'bikezone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bikezone_db',
-        'USER': 'postgres',
-        'PASSWORD': 'salman@123',  
-        'HOST':'127.0.0.1',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'bikezone_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'salman@123',  
+#         'HOST':'127.0.0.1',
+#     }
+# }
+
+
+DATABASES = {'default': dj_database_url.config(default='postgres://postgres:salman@123@localhost/bikezone_db')}
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # Password validation
@@ -163,3 +170,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'projectsalman4@gmail.com'
 EMAIL_HOST_PASSWORD = 'Salman@123@Project'
+
+
+#WHITENOISE SETTINGS
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
