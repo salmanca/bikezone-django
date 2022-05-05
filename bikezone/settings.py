@@ -26,7 +26,7 @@ SECRET_KEY = '6eu0=2ph3e#+1ev=e2t_c%hv0-+6c^r+i*=^-@zqx*0=n=$m1b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tranquil-chamber-73882.herokuapp.com', 'www.bikezoneapp.co', 'bikezoneapp.co']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
