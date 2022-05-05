@@ -27,10 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
     'pages.apps.PagesConfig',
     'bikes.apps.BikesConfig',
     'django.contrib.admin',
@@ -41,7 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'multiselectfield',
+    # humanize
     'django.contrib.humanize',
+    #allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +147,19 @@ STATICFILES_DIRS = [
 # MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success'
+}
+
+SITE_ID = 1
+
+#EMAIL SENDING
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'projectsalman4@gmail.com'
+EMAIL_HOST_PASSWORD = 'Salman@123@Project'
